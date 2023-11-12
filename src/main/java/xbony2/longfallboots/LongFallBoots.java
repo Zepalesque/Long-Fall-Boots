@@ -9,7 +9,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.common.Mod;
@@ -72,8 +72,8 @@ public final class LongFallBoots {
 
 		deferredRegisterItem.register(FMLJavaModLoadingContext.get().getModEventBus());
 
-		FMLJavaModLoadingContext.get().getModEventBus().<CreativeModeTabEvent.BuildContents>addListener(e -> {
-			if (e.getTab() == CreativeModeTabs.COMBAT)
+		FMLJavaModLoadingContext.get().getModEventBus().<BuildCreativeModeTabContentsEvent>addListener(e -> {
+			if (e.getTabKey().location().equals(CreativeModeTabs.COMBAT.location()))
 				e.accept(longFallBoots.get());
 		});
 

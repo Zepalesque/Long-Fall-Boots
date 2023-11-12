@@ -1,22 +1,15 @@
 import java.time.Instant
 
-buildscript {
-	repositories {
-		maven { url = 'https://files.minecraftforge.net/maven' }
-		mavenCentral()
-	}
-
-	dependencies {
-		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-	}
+plugins {
+	id 'net.neoforged.gradle' version '[6.0.13, 6.2)'
 }
-
-apply plugin: 'net.minecraftforge.gradle'
 apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
 version = modVersion
 group = 'xbony2.longfallboots'
-archivesBaseName = 'longfallboots'
+base {
+	archivesName = 'longfallboots'
+}
 java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
 
 minecraft {
@@ -48,7 +41,7 @@ minecraft {
 }
 
 dependencies {
-	minecraft "net.minecraftforge:forge:$forgeVersion"
+	minecraft "net.neoforged:forge:$neoforgeVersion"
 }
 
 jar.manifest.attributes([
